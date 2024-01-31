@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block content %}
+{% if form.errors %}
+<h5 class="enter-sistem">Ошибка авторизации.
+    Пожалуйста, попробуйте еще раз.
+</h5>
+    
+
+{% else %}
+{% endif %}
+<h2 class="enter-sistem">Авторизация</h2>
+<form method="post">
+    {% csrf_token %}
+    <table class="table_login">
+        <tr>
+            <td class="form_us">{{ form.username.label_tag }}</td>
+            <td class="form_us">{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td class="form_us">{{ form.password.label_tag }}</td>
+            <td class="form_us">{{ form.password }}</td>
+        </tr>
+    </table>
+<br>
+    <input class="enter-log" type="submit" value="Вход">
+</form>
+<p></p>
+<button class="reg-user-log"><a class="user-log" href="/account/register"> Регистрация </a></button>
+{% endblock %}

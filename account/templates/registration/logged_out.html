@@ -1,0 +1,8 @@
+{% extends "main.html" %}
+
+{% block content %}
+<h2 class="exit_sistem" > Вы вышли из системы </h2>
+<h3 class="logged_out">
+    Но вы можете <a class="user-logged_out" href="{% url 'login' %}">вернуться!</a>
+</h3>
+{% endblock %}

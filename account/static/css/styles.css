@@ -1,0 +1,435 @@
+@charset "UTF-8";
+:root {
+  --document_black: #163E6C;
+  --document_red: #D20A11;
+  --document_beige: #d6d8eb;
+}
+/* @font-face {
+    font-family: 'PT-Astra-Sans_Regular';
+    src: local('PT-Astra-Sans_Regular'), url('/static/fonts/PT_Astra_Sans/PT-Astra-Sans_Regular.ttf') format('truetype');
+} */
+@font-face {
+    font-family: 'PT-Astra-Sans_Bold';
+    src: local('PT-Astra-Sans_Bold'), url('/static/fonts/PT_Astra_Sans/PT-Astra-Sans_Bold.ttf') format('truetype');
+}
+/* @font-face {
+    font-family: 'PT-Astra-Sans_Bold-italic';
+    src: local('PT-Astra-Sans_Bold-italic'), url('/static/fonts/PT_Astra_Sans/PT-Astra-Sans_Bold-italic.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'PT-Astra-Sans_Italic';
+    src: local('PT-Astra-Sans_Italic'), url('/static/fonts/PT_Astra_Sans/PT-Astra-Sans_Italic.ttf') format('truetype');
+} */
+
+html {
+  font-family: "PT-Astra-Sans_Regular";
+  font-size: 18px;
+  color: var(--document_black);
+  /* Нормализатор */
+  line-height: 2.15; /* Высота строки для всех браузеров */
+  -webkit-text-size-adjust: 100%; /* фикс размера шрифта в iOS при повороте экрана */
+  -ms-text-size-adjust: 100%; /* фикс размера шрифта в ms при повороте экрана */
+  -moz-text-size-adjust: 100%; /* фикс размера шрифта в mozilla при повороте экрана */
+  -ms-overflow-style: scrollbar; /* стандартные полосы прокрутки */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  /* убираем цвет подсветки ссылки при касании */
+  }
+
+body {
+    background: linear-gradient(#84CEEB, #C1C8E4);
+    width: 99%;
+    min-width:960px;
+    max-height: 100em;
+ }
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 98.3vh;
+    padding: 0px 5px 0px;
+}
+
+footer {
+    margin-top: auto;
+    margin-bottom: 5px;
+}
+
+.headspan {
+    color: var(--document_black);
+    margin-left: 91%;
+  }
+ 
+header {
+  	min-height: fit-content;
+ }
+
+.frame {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 95em;
+	height: fit-content;
+    outline: 2px solid #163E6C;
+    border-radius: 5px;
+ }
+
+p.login {
+    text-align: center;
+}
+
+div.login_s {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .field {clear:both; text-align:center;}
+}
+
+div.login_s.input.label {
+    clear:both; 
+    text-align:right;
+}
+
+h5 {
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 1em;
+}  
+
+.btn {
+    text-decoration: none;
+    color: #EBE6D6;
+    background-color:  #163E6C;  
+    border-radius: 5px;
+    padding: 3px 20px 6px 20px;
+}
+
+.btn:hover {
+    background-color:  #5680E9;
+    text-decoration: underline;
+}
+
+div.btn-wrapper {
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+a.navbar-brand {
+    padding-right: 4em;
+    text-decoration: none;
+    font-size: 2em;
+    font-weight:bold;
+    color: #163E6C;
+}
+
+div.author_1 {
+    text-align: right;
+    margin-right: 2em;
+}
+
+.frame_1 {
+    margin-bottom: 20px;
+	height: fit-content;
+    outline: 2px solid #163E6C;
+    border-radius: 5px;
+}
+
+h5.title_1 {
+    text-align: right;
+    margin-right: 2em;
+} 
+
+h4.title_2 {
+    text-align: center;
+}
+
+.search-doc {
+    text-align: center;   
+}
+
+.table_blur {
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+    border-collapse: collapse;
+    border: 1px solid #163E6C;
+}
+
+a.link-dark:link {
+    font-style: italic;    
+}
+    
+a.link-dark:visited {
+    color: #163E6C;
+}
+    
+a.link-dark:hover {
+    color: #5680E9;
+}
+
+form.create-doc {
+    text-align: left;
+}
+
+table.table-create {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-deitail, .table-delete {
+    margin-top: 1em;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+}
+
+hr {
+    width: 98%;
+    size: 10px;
+}
+
+.fw-bold {
+    text-align: center;
+}
+
+div.break {
+    /* text-align: left; */
+    text-indent: 40px;
+    
+    /* height: fit-content; */
+}
+p.text-break {
+    /* line-break: loose; */
+    margin-left: 16px; 
+    /* margin-right: 10px; */
+    padding: 10px;
+    height: fit-content;
+    width: 98%;
+    /* text-align: center; */
+    /* overflow: hidden; */
+    border-collapse: collapse;
+    border: 1px solid #163E6C;
+}
+
+.foto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto1 {
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.scale {
+    margin-left: 10px;
+}
+    
+.edit-doc {
+    text-align: center;
+}
+
+.edit-doc-doc {
+    text-align: left;
+}
+
+.table-edit {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.delete-doc {
+    text-align: center;
+}
+
+h2.doc-none {
+    position: relative;
+    left: 40px;
+    color: #D20A11;
+}
+
+.frame-2 {
+	margin-left:auto;
+	margin-right: auto;
+	max-width: 95em;
+	height: fit-content;
+    outline: 2px solid #163E6C;
+    border-radius: 5px;
+}
+
+.footer-1 {
+    margin-left: 40px;
+    color: #163E6C;
+}
+
+.footer-2 {
+    float: right;
+    margin-right: 20px;
+    color: #163E6C;
+}
+
+.paginat {
+    margin-left: 1.1em;
+}
+
+body {
+    background-color: #EBE6D6;
+}
+
+.frame_main {
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 16%;
+   padding: 15px 0px 15px 0px;
+   max-width: 22em;
+   height: fit-content;
+   outline: 2px solid #163E6C;
+   border-radius: 5px;
+}
+
+h2.title_main {
+    text-align: center;
+}
+
+a.reg-user {
+    text-align: center;
+    color: #EBE6D6;
+    background-color: #D20A11;
+    border-radius: 5px;
+    padding: 3px 25px 6px 25px;
+}
+
+.exit_sistem {
+    text-align: center;
+    margin-top: 2%;
+    color:#163E6C;
+}
+
+.table_login {
+    margin: 0 10px 0 10px;
+}
+
+.form_us {
+    font-size: medium;
+    color: #163E6C;
+    top: auto;
+}
+
+.enter-log {
+    margin: auto;
+    display: block;
+    color: #EBE6D6;
+    background-color: #D20A11;
+    border-radius: 5px;
+    padding: 3px 20px 6px 20px;
+}
+
+.enter-sistem {
+    text-align: center;
+    color: #163E6C;
+}
+
+.reg-user-log {
+    margin: 0 auto;
+    display: block;
+    text-decoration: none;
+    color: #EBE6D6;
+    background-color: #D20A11;
+    border-radius: 5px;
+    padding: 3px 20px 6px 20px;
+}
+
+.user-log {
+    text-decoration: none;
+    color: #EBE6D6;
+}
+
+.registr-sistem, .protect-cl, .str-1 {
+    color: #163E6C;
+}
+
+.enter-first {
+    color: #163E6C;
+    font-size: x-large;
+}
+
+.protect-cl {
+    text-align: center;
+}
+
+.str-1 {
+  text-align: center;
+    font-size: large;
+}
+
+.delete_button {
+    position: relative;
+    top: -8em;
+    left: -2em;
+}
+
+/* form p {
+    overflow:auto;
+} */
+
+label[for=id_password], [for=id_login], [for=id_email], [for=id_username],
+[for=id_username],[for=id_password1], [for=id_password2] {
+    /* float:left; */
+    /* clear:both; */
+    hyphens:auto;
+    margin: 0 0 0 7px;
+    font-size: medium;
+    color:#1b0781;
+    /* margin-bottom:4px;
+    margin: right 10px;; */
+    /* float: centre; */
+    /* clear: both;  */
+}
+
+input[type=password], [type= password2], [type=email], [name=username]{
+    clear: both;
+    float: right;
+    margin:0 7px 0 5px;
+    background:#efefef;
+    border: 1px;;
+    padding:6px 10px;
+    font-size:12px;
+}
+
+.helptext {
+    text-align: center;
+    margin:0 3px 20px 3px;
+    color:#282870;
+    clear:both;
+    float:left;
+    font-size:13px;
+} 
+
+.errorlist {
+    color:#f10a44;
+    float:left;
+    clear:both;
+    padding-left:10px
+}
+
+.center {
+    text-align: center;
+    color: #e94141;
+  }
+
+.logged_out {
+    text-align: center;
+}  

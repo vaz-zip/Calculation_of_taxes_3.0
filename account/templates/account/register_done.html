@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+<h2 class="exit_sistem" >Добро пожаловать, {{ new_user.first_name }}!</h2>
+<div class="logged_out">
+    Ваша учетная запись успешно создана
+    <br>
+    <a href="{% url 'login' %}">Вход</a>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title> Вход и регистрация</title>
+        {% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    
+    <body> 
+    <div class="frame_main">
+        {% if not user.is_authenticated %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </div>
+    </body>
+</html>
