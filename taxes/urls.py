@@ -1,4 +1,5 @@
 from django.urls import path
+from . import views
 from .views import StaffList, StaffDetailView, StaffCreateView, StaffUpdateView, StaffDeleteView, Pay_and_ChargesList, СhargesDetailView, СhargesCreateView, \
                    ChargesDeleteView, ChargesUpdateView, FinreportList #  #doc_filter, , DocumentUpdateView, ImageDeleteView
 
@@ -16,4 +17,5 @@ urlpatterns = [
     path('charge_edit/<int:pk>', ChargesUpdateView.as_view(), name='char_edit'),
     path('charge_delete/<int:pk>', ChargesDeleteView.as_view(), name='char_delete'),
     path('report', FinreportList.as_view(queryset=Accruals_and_taxes.objects.all().order_by('reporting_date', 'worker')), name='report'),
+    path('<int:staff_id>/pdf/',views.staff_pdf, name='staff_pdf'),
 ]

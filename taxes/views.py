@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 # from django_filters import FilterSet, DateFilter
 # import requests
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,8 +9,23 @@ from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Staff, Accruals_and_taxes
 from .filters import StaffFilter, ChargesFilter, ReportFilter
-from .forms import StaffCreateForm, ChargesCreateForm #StaffUpdateForm, 
+from .forms import StaffCreateForm, ChargesCreateForm #StaffUpdateForm,
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+import weasyprint
 
+
+def staff_pdf(request, staff_id):
+        staff = get_object_or_404(Staff, id=staff_id)
+        html = render_to_string('pdf.html', 
+                                {'staff': staff},
+                            )
+        # html = HTML(string=html_string, base_url=request.build_absolute_uri())
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = f'filename={staff.id}_{staff.surname}.pdf'
+        weasyprint.HTML(string=html).write_pdf(response, stylesheets=[weasyprint.CSS(settings.STATIC_ROOT / 'css/pdf.css')])
+        return response 
 
 class StaffList(LoginRequiredMixin, ListView): 
     model = Staff

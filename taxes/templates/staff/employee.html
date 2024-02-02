@@ -29,6 +29,7 @@
     </table> 
     <div class="btn-wrapper">
         <a href="{% url 'staff_edit' staff.id %}" class="btn" role="button" >Редактировать</a>
-        <a href="{% url 'staff_delete' staff.id %}" class="btn" role="button">Удалить</a>   
+        <a href="{% url 'staff_delete' staff.id %}" class="btn" role="button">Удалить</a>
+        <a href="{% url 'staff_pdf' staff.id %}" class="btn" role="button" >PDF</a>   
     </div>    
 {% endblock content %}

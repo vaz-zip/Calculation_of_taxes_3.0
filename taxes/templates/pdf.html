@@ -1,0 +1,28 @@
+<h3>Сотрудник {{ staff.surname }} {{ staff.name }}.pdf </h3>
+<table class="table-deitail">
+    <thead>
+      <tr>
+         <th scope="col">Фамилия</th>
+         <th scope="col">Имя</th>
+         <th scope="col">Отчество</th>
+         <th scope="col">ИНН</th>
+         <th scope="col">Должность</th>
+         <th scope="col">К-во детей</th>
+         <th scope="col">Дополнения</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr>
+         <th scope="row">{{ staff.surname }}</th>
+         <th scope="row">{{ staff.name }}</th>
+         <th scope="row">{{ staff.patronimic }}</th>
+         <th scope="row">{{ staff.ITN }}</th>
+         <th scope="row">{{ staff.post }}</th>
+         <th scope="row">{{ staff.dependents }}</th>
+         <th scope="row">{{ staff.description }}</th>
+       </tr>
+    </tbody> 
+</table>
+<hr>
+
+   
