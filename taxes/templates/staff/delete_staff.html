@@ -1,0 +1,41 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+<p></p>
+<h4 class="delete-doc">{{ request.user.username }}, Вы удаляете сотрудника</h4>
+<hr>
+<table class="table-delete">
+    <thead>
+        <tr>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Отчество</th>
+            <th scope="col">ИНН</th>
+            <th scope="col">Должность</th>
+            <th scope="col">К-во детей</th>
+            <th scope="col">Дополнения</th>
+        </tr>
+     </thead>
+     <tbody>
+        <tr>       
+            <th scope="row">{{ staff.surname|truncatechars:7 }}</th>
+            <th scope="row">{{ staff.name|truncatechars:7 }}</th>
+            <th scope="row">{{ staff.patronimic|truncatechars:7 }}</th>
+            <th scope="row">{{ staff.ITN }}</th>
+            <th scope="row">{{ staff.post|truncatechars:7 }}</th>
+            <th scope="row">{{ staff.dependents }}</th>
+            <th scope="row">{{ staff.description|truncatechars:10 }}</th>
+        </tr>
+     </tbody>
+</table>
+<hr>
+<body>
+    <form method="POST">
+             {% csrf_token %}
+             <div class="btn-wrapper">
+            <input type="submit" class="btn" value="Подтвердить удаление">
+            </div>
+          
+    </form>
+</body>
+
+{% endblock content %}

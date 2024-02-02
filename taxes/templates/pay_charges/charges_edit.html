@@ -1,0 +1,12 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+<p></p>
+<h4 class="delete-doc"> {{ request.user.username }}, Вы редактируете выплату</h4>
+<form class="edit-doc-doc" method="POST">
+    {% csrf_token %}
+    <table class="table-edit"> {{ form }}</table>
+    <div class="btn-wrapper">
+        <input class="btn" type="submit" value="Редактировать">
+    </div>  
+</form>
+{% endblock content %}

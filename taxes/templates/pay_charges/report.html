@@ -1,0 +1,75 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+    <h5 class="title_1"> User: {{ request.user.username }}, 
+        ID={{ request.user.id }} 
+        <!--  Ваших отчетов в базe: {{ taxes.count }} -->
+    </h5>
+    {% if taxes %}
+    <div class="search_1">
+        <form class="search-doc" method="GET">
+            {{ filter.form }}
+            <div class="d-grid gap-3 col-3 btn-wrapper">
+                <input type="submit" class="btn" value="Сформировать отчет">
+            </div> 
+    </div>          
+        </form>
+        <table class="table_blur">
+            <thead>
+                <tr>
+                    <th scope="col">Фамилия, Имя</th>
+                    <th scope="col">Дата начисления</th>
+                    <th scope="col">Начислено</th>
+                    <th scope="col">Соц.вычет</th>
+                    <th scope="col">% ал.</th>
+                    <th scope="col">Алименты</th>
+                    <th scope="col">НДФЛ</th>
+                    <th scope="col">Выплачено</th>
+                    <th scope="col">Ед.налог</th>
+                    <th scope="col">Соц.С</th>
+                    <th scope="col">Дополнения</th>
+                </tr>
+            </thead>
+            <tbody class="stab">
+                {% for accruals_and_taxes in taxes %}  <!--in documents filter.qs%} -->
+                    <tr>
+                        <th scope="row"><a href="{% url 'charges' accruals_and_taxes.id %}" class="link-dark">
+                            {{ accruals_and_taxes.worker|truncatechars:10 }}</a></th>  
+                        <th scope="row">{{ accruals_and_taxes.reporting_date }}</th>
+                        <th scope="row">{{ accruals_and_taxes.accrued }}</th>
+                        <th scope="row">{{ accruals_and_taxes.social_deductions }}</th>
+                        <th scope="row">{{ accruals_and_taxes.alimony }}</th>
+                        <th scope="row">{{ accruals_and_taxes.alimony_tax }}</th>
+                        <th scope="row">{{ accruals_and_taxes.income_tax }}</th>
+                        <th scope="row">{{ accruals_and_taxes.salary }}</th>
+                        <th scope="row">{{ accruals_and_taxes.single_tax }}</th>
+                        <th scope="row">{{ accruals_and_taxes.injury_insurance }}</th>
+                        <th scope="row">{{ accruals_and_taxes.description|truncatechars:12 }}</th>
+                    </tr>    
+                        <!-- <th scope="row"></th> -->
+                    
+                    
+                     {% endfor %}
+                
+                    
+                    <tr>
+                         <th scope="col">ИТОГО:</th>
+                         <th scope="col"></th> 
+                         <th scope="col">{{ summ }}</th>
+                         <th scope="col">{{ summ_social }}</th> 
+                         <th scope="col"></th>
+                         <th scope="col">{{ summ_al }}</th>
+                         <th scope="col">{{ summ_inc_tax }}</th>
+                         <th scope="col">{{ summ_salary }}</th>
+                         <th scope="col">{{ summ_singl_tax }}</th>
+                         <th scope="col">{{ summ_injury_insurance }}</th>
+                         <th scope="col"></th>
+                    </tr>
+        
+            </tbody>
+        </table> 
+        <!-- <QuerySet [<Accruals_and_taxes: 20000.0>, <Accruals_and_taxes: 10000.0>, <Accruals_and_taxes: 10000.0>]> -->
+    {% else %}
+        <h2 class="doc-none">Отчетов нет!</h2>
+    {% endif %}
+    <p></p>
+{% endblock content %}

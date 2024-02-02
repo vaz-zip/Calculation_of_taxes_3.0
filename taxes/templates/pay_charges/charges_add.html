@@ -1,0 +1,11 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+<h4 class="title_2">{{ request.user.username }}, Вы добавляете выплату</h4>
+<form class="create-doc" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table-create">{{ form }}</table>
+    <div class="btn-wrapper">
+    <input class="btn" type="submit"  value="Записать">
+    </div>
+</form>
+{% endblock content %}

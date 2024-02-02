@@ -1,0 +1,45 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+<p></p>
+<h4 class="delete-doc">{{ request.user.username }}, Вы удаляете выплату</h4>
+<table class="table_blur">
+    <thead>
+       <tr>
+           <th scope="col">Фамилия</th>
+           <th scope="col">Дата выплаты</th>
+           <th scope="col">Начислено</th>
+           <th scope="col">Соц.вычет</th>
+           <th scope="col">Коэф. ал.</th>
+           <th scope="col">Алименты</th>
+           <th scope="col">НДФЛ</th>
+           <th scope="col">Выплачено</th>
+           <th scope="col">Единый налог</th>
+           <th scope="col">Страх. от НС</th>
+           <th scope="col">Дополнения</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+           <th scope="row">{{ accruals_and_taxes.worker }}</th>
+           <th scope="row">{{ accruals_and_taxes.payment_date }}</th>
+           <th scope="row">{{ accruals_and_taxes.accrued }}</th>
+           <th scope="row">{{ accruals_and_taxes.social_deductions }}</th>
+           <th scope="row">{{ accruals_and_taxes.alimony }}</th>
+           <th scope="row">{{ accruals_and_taxes.alimony_tax }}</th>
+           <th scope="row">{{ accruals_and_taxes.income_tax }}</th>
+           <th scope="row">{{ accruals_and_taxes.salary }}</th>
+           <th scope="row">{{ accruals_and_taxes.single_tax }}</th>
+           <th scope="row">{{ accruals_and_taxes.injury_insurance }}</th>
+           <th scope="row">{{ accruals_and_taxes.description|truncatechars:12 }}</th>
+        </tr>
+    </tbody>
+</table>
+<body>
+    <form method="POST">
+             {% csrf_token %}
+            <div class="btn-wrapper">
+                <input type="submit" class="btn" value="Подтвердить удаление">
+            </div>
+    </form>
+</body>
+{% endblock content %}

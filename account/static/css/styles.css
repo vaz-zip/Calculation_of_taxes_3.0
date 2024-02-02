@@ -46,7 +46,10 @@ body {
 *:after {
     box-sizing: border-box;
 }
-
+tbody.stab {
+    font-size: medium;
+    font-style: italic;
+}
 .wrapper {
     overflow: hidden;
     display: flex;

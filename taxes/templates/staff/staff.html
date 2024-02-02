@@ -1,0 +1,52 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+    <h5 class="title_1"> User: {{ request.user.username }}, 
+        ID={{ request.user.id }}, 
+        Ваших сотрудников в базe: {{ paginator.count }} </h5>
+
+    {% if staff %}
+        <!-- Перед таблицей добавим форму для поиска -->
+        <!-- <h4 class="title_2">Поиск</h4> -->
+    <div class="search_1">
+        <form class="search-doc" method="GET">
+            {{ filter.form }}
+            <div class="d-grid gap-3 col-3 btn-wrapper">
+                <input type="submit" class="btn" value="Найти">
+            </div> 
+        </form>
+    </div>
+        <table class="table_blur">
+            <thead>
+                <tr>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Отчество</th>
+                    <th scope="col">ИНН</th>
+                    <th scope="col">Должность</th>
+                    <th scope="col">К-во детей</th>
+                    <th scope="col">Дополнения</th>
+                </tr>
+            </thead>
+            <tbody class="stab">
+                {% for staff in staff %}  <!--in documents filter.qs%} -->
+                    <tr>
+                        <th scope="row"><a href="{% url 'worker' staff.id %}" class="link-dark">
+                            {{ staff.surname|truncatechars:12 }}</a></th>  
+                        <th scope="row">{{ staff.name|truncatechars:10}}</th>
+                        <th scope="row">{{ staff.patronimic|truncatechars:10 }}</th>
+                        <th scope="row">{{ staff.ITN }}</th>
+                        <th scope="row">{{ staff.post|truncatechars:10 }}</th>
+                        <th scope="row">{{ staff.dependents }}</th>
+                        <th scope="row">{{ staff.description|truncatechars:12 }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h2 class="doc-none">У Вас пока нет сотрудников!</h2>
+    {% endif %}
+    {% include "pagination.html" with page=page_obj %}
+    <div class="btn-wrapper">
+        <a class="btn" href="/create">Добавить сотрудника</a>
+    </div >
+{% endblock content %}

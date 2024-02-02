@@ -1,0 +1,64 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+<h5 class="title_1">User: {{ request.user.username }}, ID={{ request.user.id }}, всего выплат в базe: {{ paginator.count }}</h5>
+   {% if accruals_and_taxes %}
+
+<div class="search_1">  
+<form class="search-doc" method="GET">
+ {{ filter.form }}
+<div class="d-grid gap-3 col-3 btn-wrapper">
+    <input type="submit" class="btn" value="Найти">
+</div>  
+</form>
+</div> 
+    <table class="table_blur">
+        <thead>
+           <tr>
+               <th scope="col">Фамилия</th>
+               <th scope="col">Дата выплаты</th>
+               <th scope="col">Начислено</th>
+               <th scope="col">Соц.вычет</th>
+               <th scope="col">% ал.</th>
+               <th scope="col">Алименты</th>
+               <th scope="col">НДФЛ</th>
+               <th scope="col">Выплачено</th>
+               <th scope="col">Ед.налог</th>
+               <th scope="col">СоцСтрах</th>
+               <th scope="col">Дополнения</th>
+            </tr>
+          
+        </thead>
+        <tbody class="stab">
+            
+            {% for accruals_and_taxes in accruals_and_taxes %}  <!--in documents filter.qs%} -->
+           <tr>
+               <th scope="row">
+                  <a href="{% url 'charges' accruals_and_taxes.id %}" class="link-dark">{{ accruals_and_taxes.worker|truncatechars:12 }}</a>
+               </th>  
+               <th scope="row">{{ accruals_and_taxes.payment_date }}</th>
+               <th scope="row">{{ accruals_and_taxes.accrued }}</th>
+               <th scope="row">{{ accruals_and_taxes.social_deductions }}</th>
+               <th scope="row">{{ accruals_and_taxes.alimony }}</th>
+               <th scope="row">{{ accruals_and_taxes.alimony_tax }}</th>
+               <th scope="row">{{ accruals_and_taxes.income_tax }}</th>
+               <th scope="row">{{ accruals_and_taxes.salary }}</th>
+               <th scope="row">{{ accruals_and_taxes.single_tax }}</th>
+               <th scope="row">{{ accruals_and_taxes.injury_insurance }}</th>
+               <th scope="row">{{ accruals_and_taxes.description|truncatechars:12 }}</th>
+               <!-- <th scope="row">{{ accruals_and_taxes.worker.author }}</th> -->
+   
+            </tr>
+           {% endfor %}
+        </tbody>
+    </table>
+       
+   {% else %}
+  
+       <h2 class="doc-none">Выплат нет!</h2>
+
+   {% endif %}
+   {% include "pagination.html" with page=page_obj %}
+   <div class="btn-wrapper">
+       <a class="btn" href="/char_create">Добавить выплату</a>
+   </div >
+{% endblock content %}

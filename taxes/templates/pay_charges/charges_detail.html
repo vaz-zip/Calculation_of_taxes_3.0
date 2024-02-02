@@ -1,0 +1,41 @@
+{% extends 'flatpages/default.html' %}
+{% block content %}
+<p></p>
+    <table class="table_blur">
+        <thead>
+           <tr>
+               <th scope="col">Фамилия</th>
+               <th scope="col">Дата выплаты</th>
+               <th scope="col">Начислено</th>
+               <th scope="col">Соц.вычет</th>
+               <th scope="col">% ал.</th>
+               <th scope="col">Алименты</th>
+               <th scope="col">НДФЛ</th>
+               <th scope="col">Выплачено</th>
+               <th scope="col">Ед.налог</th>
+               <th scope="col">СоцСтрах</th>
+               <th scope="col">Дополнения</th>
+            </tr>
+        </thead>
+        <tbody class="stab">
+            <tr>
+               <th scope="row">{{ accruals_and_taxes.worker }}</th>
+               <th scope="row">{{ accruals_and_taxes.payment_date }}</th>
+               <th scope="row">{{ accruals_and_taxes.accrued }}</th>
+               <th scope="row">{{ accruals_and_taxes.social_deductions }}</th>
+               <th scope="row">{{ accruals_and_taxes.alimony }}</th>
+               <th scope="row">{{ accruals_and_taxes.alimony_tax }}</th>
+               <th scope="row">{{ accruals_and_taxes.income_tax }}</th>
+               <th scope="row">{{ accruals_and_taxes.salary }}</th>
+               <th scope="row">{{ accruals_and_taxes.single_tax }}</th>
+               <th scope="row">{{ accruals_and_taxes.injury_insurance }}</th>
+               <th scope="row">{{ accruals_and_taxes.description|truncatechars:12 }}</th>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-wrapper">
+            <a href="{% url 'char_edit' accruals_and_taxes.id %}" class="btn" role="button" >Редактировать</a>
+            <a href="{% url 'char_delete' accruals_and_taxes.id %}" class="btn" role="button" >Удалить</a>
+    </div>    
+     
+{% endblock content %}
