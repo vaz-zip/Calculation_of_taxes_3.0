@@ -18,4 +18,6 @@ urlpatterns = [
     path('charge_delete/<int:pk>', ChargesDeleteView.as_view(), name='char_delete'),
     path('report', FinreportList.as_view(queryset=Accruals_and_taxes.objects.all().order_by('reporting_date', 'worker')), name='report'),
     path('<int:staff_id>/pdf/',views.staff_pdf, name='staff_pdf'),
+    # path('<int:accruals_and_taxes_id>/charges_pdf/',views.charges_pdf, name='charges_pdf'),
 ]
+   

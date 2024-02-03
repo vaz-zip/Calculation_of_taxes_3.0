@@ -18,10 +18,6 @@ table th, table td {
     margin:0;
 }
 
-/* tbody tr:nth-child(odd) {
-    background:#efefef;
-} */
-
 thead th, tbody tr.total {
     text-align: center;
     background:#5993bb;
@@ -35,36 +31,8 @@ h3 {
 }
 
 p {
-    
     font-style: italic;
     font-size: larger; 
     text-align: left;
     color: #000;
 }
-
-
-/* .secondary {
-    color:#bbb;
-    margin-bottom:20px;
-} */
-
-/* .num {
-    text-align:right;
-} */
-
-/* .paid, .pending {
-    color:#1bae37;
-    border:4px solid #1bae37;
-    text-transform:uppercase;
-    font-weight:bold;
-    font-size:22px;
-    padding:4px 12px 0px;
-    float:right;
-    transform: rotate(-15deg);
-    margin-right:40px;
-}
-
-.pending {
-    color:#a82d2d;
-    border:4px solid #a82d2d;
-} */

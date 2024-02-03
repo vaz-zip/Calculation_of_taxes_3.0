@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Staff, Accruals_and_taxes
 
+
 @admin.register(Staff)
 class StaffAdmin(admin.ModelAdmin):
     list_display = ['author', 'id', 'surname', 'name', 'patronimic',
@@ -11,6 +12,8 @@ class StaffAdmin(admin.ModelAdmin):
     ordering = ['surname', 'post']
     def get_queryset(self, obj):
         return Staff.objects.all().order_by('surname')
+    
+
 
 @admin.register(Accruals_and_taxes)
 class Accruals_and_taxesAdmin(admin.ModelAdmin):

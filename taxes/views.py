@@ -27,6 +27,17 @@ def staff_pdf(request, staff_id):
         weasyprint.HTML(string=html).write_pdf(response, stylesheets=[weasyprint.CSS(settings.STATIC_ROOT / 'css/pdf.css')])
         return response 
 
+# def charges_pdf(request, accruals_and_taxes_id):
+#         accruals_and_taxes = get_object_or_404(Accruals_and_taxes, id=accruals_and_taxes_id)
+#         html = render_to_string('charges_pdf.html', 
+#                                 {'charges': accruals_and_taxes},
+#                             )
+#         # html = HTML(string=html_string, base_url=request.build_absolute_uri())
+#         response = HttpResponse(content_type='application/pdf')
+#         response['Content-Disposition'] = f'filename={accruals_and_taxes.id}_{ accruals_and_taxes.worker }.pdf'
+#         weasyprint.HTML(string=html).write_pdf(response, stylesheets=[weasyprint.CSS(settings.STATIC_ROOT / 'css/pdf.css')])
+#         return response 
+
 class StaffList(LoginRequiredMixin, ListView): 
     model = Staff
     template_name = 'staff.html'
