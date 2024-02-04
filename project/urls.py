@@ -16,6 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import SimpleRouter
+from taxes.views import StaffView, Accruals_and_taxesView
+
+router = SimpleRouter()
+
+router.register('api/staff', StaffView)
+router.register('api/accruals_and_taxes', Accruals_and_taxesView)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,3 +31,4 @@ urlpatterns = [
     path('', include('taxes.urls')),
     # path('', include('account.urls', namespace='document')),
 ]
+urlpatterns += router.urls

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-# from django_filters import FilterSet, DateFilter
-# import requests
+from rest_framework.viewsets import ModelViewSet
+from taxes.api.serializers import StaffSerializer, Accruals_and_taxesSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
 from django.urls import reverse
@@ -27,17 +27,6 @@ def staff_pdf(request, staff_id):
         weasyprint.HTML(string=html).write_pdf(response, stylesheets=[weasyprint.CSS(settings.STATIC_ROOT / 'css/pdf.css')])
         return response 
 
-# def charges_pdf(request, accruals_and_taxes_id):
-#         accruals_and_taxes = get_object_or_404(Accruals_and_taxes, id=accruals_and_taxes_id)
-#         html = render_to_string('charges_pdf.html', 
-#                                 {'charges': accruals_and_taxes},
-#                             )
-#         # html = HTML(string=html_string, base_url=request.build_absolute_uri())
-#         response = HttpResponse(content_type='application/pdf')
-#         response['Content-Disposition'] = f'filename={accruals_and_taxes.id}_{ accruals_and_taxes.worker }.pdf'
-#         weasyprint.HTML(string=html).write_pdf(response, stylesheets=[weasyprint.CSS(settings.STATIC_ROOT / 'css/pdf.css')])
-#         return response 
-
 class StaffList(LoginRequiredMixin, ListView): 
     model = Staff
     template_name = 'staff.html'
@@ -55,6 +44,15 @@ class StaffList(LoginRequiredMixin, ListView):
         context['filter'] = StaffFilter(self.request.GET, queryset=self.get_queryset())
         return context
  
+
+class StaffView(ModelViewSet):
+    queryset = Staff.objects.all()
+    serializer_class = StaffSerializer
+
+class Accruals_and_taxesView(ModelViewSet):
+    queryset = Accruals_and_taxes.objects.all()
+    serializer_class = Accruals_and_taxesSerializer    
+
 
 class StaffDetailView(LoginRequiredMixin, DetailView):
     model = Staff
@@ -115,6 +113,7 @@ class Pay_and_ChargesList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         self.filter = self.filter_class(self.request.GET, super().get_queryset())
         return self.filter.qs.all()    
+
     
 class СhargesDetailView(DetailView):
     model = Accruals_and_taxes
@@ -124,7 +123,8 @@ class СhargesDetailView(DetailView):
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
         return Accruals_and_taxes.objects.get(pk=id)    
-    
+
+
 class СhargesCreateView(LoginRequiredMixin, CreateView):
     template_name = 'pay_charges/charges_add.html'
     form_class = ChargesCreateForm
@@ -149,7 +149,6 @@ class ChargesUpdateView(UpdateView):
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
         return Accruals_and_taxes.objects.get(pk=id)
-
 
 
 class ChargesDeleteView(DeleteView):
@@ -179,14 +178,8 @@ class FinreportList(LoginRequiredMixin, ListView):
         # print(d('end_date'))        
         start_date = d('start_date') # получаем переменную start_date
         end_date = d('end_date') # получаем переменную end_date
-        # if start_date == "" or end_date == "":
-        #     start_date = '2020-01-01'
-        #     end_date = '2020-01-01'
-
         processed_request = Accruals_and_taxes.objects.filter(reporting_date__range = (start_date, end_date)) # находим отфильтрованные по дате ключ: значение словаря QuerySet 
-        # print(processed_request)
-        
-        
+       
         def summ_accrued():
             summ = 0
             for item in processed_request.values('accrued'): # получаем начислеия за период
@@ -238,7 +231,6 @@ class FinreportList(LoginRequiredMixin, ListView):
             return summ
         context['summ_salary'] = summ_salary
 
-            
         def summ_alimony():
             summ = 0
             for item in processed_request:

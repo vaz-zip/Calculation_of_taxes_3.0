@@ -25,6 +25,7 @@
                     <th scope="col">Должность</th>
                     <th scope="col">К-во детей</th>
                     <th scope="col">Дополнения</th>
+                    <th scope="col">Принят</th>
                 </tr>
             </thead>
             <tbody class="stab">
@@ -38,6 +39,7 @@
                         <th scope="row">{{ staff.post|truncatechars:10 }}</th>
                         <th scope="row">{{ staff.dependents }}</th>
                         <th scope="row">{{ staff.description|truncatechars:12 }}</th>
+                        <th scope="col">{{ staff.employment_date }}</th>
                     </tr>
                 {% endfor %}
             </tbody>

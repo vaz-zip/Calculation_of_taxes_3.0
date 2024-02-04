@@ -2,3 +2,4 @@
 Кеш redis,
 redis-board
 запуск Redis: docker run -it --rm --name redis -p 6379:6379 redis в виртуальном окружении
+запрос api ссылкам: api\staff\?format=json и api\accruals_and_taxes/?format=json

@@ -6,7 +6,10 @@ from django.contrib.auth.models import User
 class StaffCreateForm(forms.ModelForm):
     class Meta:
         model = Staff
-        fields = ['surname', 'name', 'patronimic', 'post', 'ITN', 'dependents', 'description']
+        fields = ['surname', 'name', 'patronimic', 'post', 'ITN', 'dependents', 'description', 'employment_date']
+        widgets = {
+            'employment_date': forms.DateInput(attrs={'type': 'date'}),
+            }
 
 
 class ChargesCreateForm(forms.ModelForm):
