@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-n)_rae&de-dwaiq43j6s_m772ry7nn9mt!&_b5e6bno$ov7=(=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'vzway.su']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'redisboard',
+    'import_export',
     'rest_framework',
     'taxes',
 ]

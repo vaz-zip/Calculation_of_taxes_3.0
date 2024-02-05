@@ -29,6 +29,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('', include('taxes.urls')),
-    # path('', include('account.urls', namespace='document')),
 ]
+
 urlpatterns += router.urls
+
+handler404 = "project.views.page_not_found_view" 
+handler500 = "project.views.server_error"
