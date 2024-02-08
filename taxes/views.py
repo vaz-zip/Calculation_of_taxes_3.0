@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 from taxes.api.serializers import StaffSerializer, Accruals_and_taxesSerializer
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Sum
-from django.urls import reverse
-from datetime import datetime
+# from django.db.models import Sum
+# from django.urls import reverse
+# from datetime import datetime
 from django.core.paginator import Paginator
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Staff, Accruals_and_taxes
@@ -260,3 +260,4 @@ class FinreportList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         self.filter = self.filter_class(self.request.GET, super().get_queryset())
         return self.filter.qs.all()
+         
