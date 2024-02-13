@@ -21,10 +21,11 @@ def staff_pdf(request, staff_id):
         html = render_to_string('pdf.html', 
                                 {'staff': staff},
                             )
+        print(html)
         # html = HTML(string=html_string, base_url=request.build_absolute_uri())
         response = HttpResponse(content_type='application/pdf')
         response['Content-Disposition'] = f'filename={staff.id}_{staff.surname}.pdf'
-        weasyprint.HTML(string=html).write_pdf(response, stylesheets=[weasyprint.CSS(settings.STATIC_ROOT / 'css/pdf.css')])
+        weasyprint.HTML(string=str(html), base_url=request.build_absolute_uri()).write_pdf(response, stylesheets=[weasyprint.CSS(settings.STATIC_ROOT/'css/pdf.css')])
         return response 
 
 class StaffList(LoginRequiredMixin, ListView): 
