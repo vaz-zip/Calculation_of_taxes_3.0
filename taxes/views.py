@@ -103,7 +103,7 @@ class Pay_and_ChargesList(LoginRequiredMixin, ListView):
     template_name = 'pay_charges/pay_and_charges.html'
     context_object_name = 'accruals_and_taxes'
     filter_class = ChargesFilter
-    paginate_by = 3
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

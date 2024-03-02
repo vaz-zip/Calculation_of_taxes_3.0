@@ -22,5 +22,5 @@ class ChargesCreateForm(forms.ModelForm):
 
         fields =[
             'worker', 'reporting_date', 'payment_date', 
-                'accrued', 'alimony', 'description']
+                'accrued', 'social_ded', 'alimony', 'description']
      

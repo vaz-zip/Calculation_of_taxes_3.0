@@ -38,6 +38,7 @@ class Accruals_and_taxes(models.Model):
     payment_date = models.DateField(verbose_name='Дата выплаты')
     reporting_date = models.DateField(verbose_name='Дата начисления', default=default_datetime, blank= True,null=True)
     accrued = models.FloatField(verbose_name='Начислено')
+    social_ded = models.FloatField(default=0, verbose_name='Соц.вычет уч.')
     alimony = models.FloatField(default=0, verbose_name='Алименты в %')
     description = models.TextField(blank=True, verbose_name='Описание')
 

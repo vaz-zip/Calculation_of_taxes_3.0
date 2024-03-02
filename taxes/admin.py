@@ -38,11 +38,11 @@ class Accruals_and_taxesAdmin(ImportExportActionModelAdmin):
     resource_class = Accruals_and_taxesResource
     # list_display = [field.name for field in Accruals_and_taxes._meta.fields if field.name !="id"]
     fields = ['worker', 'accrued', 'payment_date', 'reporting_date', 'description', 'alimony']
-    list_display = ['worker', 'payment_date', 'accrued', 'social_deductions',
+    list_display = ['worker', 'payment_date', 'accrued', 'social_deductions', 'social_ded',
                     'alimony', 'alimony_tax', 'income_tax', 'salary', 'single_tax', 'injury_insurance', 'description', 'worker_id']
 
     def get_queryset(self, obj):
-        return Accruals_and_taxes.objects.all().order_by('payment_date', '-worker')
+        return Accruals_and_taxes.objects.all().order_by('-payment_date', 'worker')
     
 
 
