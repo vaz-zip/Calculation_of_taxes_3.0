@@ -27,6 +27,7 @@ class ChargesFilter(FilterSet):
 
 
 class ReportFilter(FilterSet):
+    # worker = forms.ModelChoiceField(queryset=Accruals_and_taxes.objects.all())
     start_date = DateFilter(field_name='reporting_date',
                                            widget= forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
                                            lookup_expr='gt', label='Период с  ')
@@ -36,9 +37,9 @@ class ReportFilter(FilterSet):
     
     date_range = ['start_date', 'end_date']
 
-    class Meta:
-        model = Accruals_and_taxes
-        fields = ['worker']
+    # class Meta:
+    #     model = Accruals_and_taxes
+    #     fields = ['worker']
 
 
         

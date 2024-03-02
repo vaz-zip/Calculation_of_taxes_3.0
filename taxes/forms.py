@@ -15,12 +15,12 @@ class StaffCreateForm(forms.ModelForm):
 class ChargesCreateForm(forms.ModelForm):
     class Meta:
         model = Accruals_and_taxes
-        widgets = {
-            'payment_date': forms.DateInput(attrs={'type': 'date'}),
+        widgets = {            
             'reporting_date': forms.DateInput(attrs={'type': 'date'}),
+            'payment_date': forms.DateInput(attrs={'type': 'date'}),
             }
 
         fields =[
-            'worker', 'payment_date', 'reporting_date',
+            'worker', 'reporting_date', 'payment_date', 
                 'accrued', 'alimony', 'description']
      

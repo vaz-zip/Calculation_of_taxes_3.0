@@ -179,6 +179,7 @@ class FinreportList(LoginRequiredMixin, ListView):
         # print(d('end_date'))        
         start_date = d('start_date') # получаем переменную start_date
         end_date = d('end_date') # получаем переменную end_date
+        # worker = d('worker')
         processed_request = Accruals_and_taxes.objects.filter(reporting_date__range = (start_date, end_date)) # находим отфильтрованные по дате ключ: значение словаря QuerySet 
        
         def summ_accrued():
