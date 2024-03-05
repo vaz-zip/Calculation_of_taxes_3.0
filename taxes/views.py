@@ -205,14 +205,25 @@ class FinreportList(LoginRequiredMixin, ListView):
             return summ
         context['summ_social'] = summ_social   
 
+        # def summ_inc_tax():
+        #     summ = 0
+        #     for item in processed_request:
+        #         for i in [item.worker.dependents]:
+        #             if item.worker.dependents <= 2:
+        #                 i = (item.accrued - item.worker.dependents * 1400) * 0.13
+        #             elif item.worker.dependents >= 3:
+        #                 i = (item.accrued - (2800 + (3000 * int(item.worker.dependents - 2)))) * 0.13
+        #             else:
+        #                 i =  item.accrued * 0.13
+        #             summ += i
+        #     return summ
+        # context['summ_inc_tax'] = summ_inc_tax
         def summ_inc_tax():
             summ = 0
             for item in processed_request:
-                for i in [item.worker.dependents]:
-                    if item.worker.dependents <= 2:
-                        i = (item.accrued - item.worker.dependents * 1400) * 0.13
-                    elif item.worker.dependents >= 3:
-                        i = (item.accrued - (2800 + (3000 * int(item.worker.dependents - 2)))) * 0.13
+                for i in [item.social_ded]:
+                    if item.social_ded > 0:
+                        i = (item.accrued - item.social_ded) * 0.13
                     else:
                         i =  item.accrued * 0.13
                     summ += i

@@ -59,8 +59,8 @@ class Accruals_and_taxes(models.Model):
 
     def income_tax(self):
         accrued = self.accrued
-        social_deductions = self.social_deductions()
-        return (accrued - social_deductions) * 0.13
+        social_ded = self.social_ded
+        return (accrued - social_ded) * 0.13
 
     def alimony_tax(self):
         accrued = self.accrued
