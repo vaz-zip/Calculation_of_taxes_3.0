@@ -204,7 +204,14 @@ class FinreportList(LoginRequiredMixin, ListView):
                     summ += i
             return summ
         context['summ_social'] = summ_social   
-
+        
+        def summ_social_d():
+            summ = 0
+            for item in processed_request:
+                for i in [item.social_ded]:
+                    summ += i
+            return summ
+        context['summ_social_d'] = summ_social_d
         # def summ_inc_tax():
         #     summ = 0
         #     for item in processed_request:
@@ -230,16 +237,24 @@ class FinreportList(LoginRequiredMixin, ListView):
             return summ
         context['summ_inc_tax'] = summ_inc_tax
 
+        # def summ_salary():
+        #     summ = 0
+        #     for item in processed_request:
+        #         for i in [item.worker.dependents]:
+        #             if item.worker.dependents <= 2:
+        #                 i = item.accrued - (item.accrued - item.worker.dependents * 1400) * 0.13 - item.accrued * item.alimony * 0.01
+        #             elif item.worker.dependents >= 3:
+        #                 i = item.accrued - (item.accrued - (2800 + (3000 * int(item.worker.dependents - 2)))) * 0.13 - item.accrued * item.alimony * 0.01
+        #             else:
+        #                 i =  item.accrued - item.accrued * 0.13 - item.accrued * item.alimony * 0.01
+        #             summ += i
+        #     return summ
+        # context['summ_salary'] = summ_salary
+
         def summ_salary():
             summ = 0
             for item in processed_request:
-                for i in [item.worker.dependents]:
-                    if item.worker.dependents <= 2:
-                        i = item.accrued - (item.accrued - item.worker.dependents * 1400) * 0.13 - item.accrued * item.alimony * 0.01
-                    elif item.worker.dependents >= 3:
-                        i = item.accrued - (item.accrued - (2800 + (3000 * int(item.worker.dependents - 2)))) * 0.13 - item.accrued * item.alimony * 0.01
-                    else:
-                        i =  item.accrued - item.accrued * 0.13 - item.accrued * item.alimony * 0.01
+                for i in [item.accrued - (item.accrued * item.alimony * 0.01) - (item.accrued - item.social_ded) * 0.13]:
                     summ += i
             return summ
         context['summ_salary'] = summ_salary
